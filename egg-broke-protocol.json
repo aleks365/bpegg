@@ -1,17 +1,17 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "version": "PTDL_v1",
+        "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-02-11T09:11:11-05:00",
+    "exported_at": "2022-09-02T02:29:51+00:00",
     "name": "Broke Protocol",
-    "author": "me@james121op.me",
+    "author": "aleks365@gmail.com",
     "description": "Pterodactyl egg for Broke Protocol",
     "features": null,
-    "images": [
-        "quay.io\/james121op\/bpegg:master"
-    ],
+    "docker_images": {
+        "Ubuntu 22.04": "ghcr.io\/aleks365\/bpegg:latest"
+    },
     "file_denylist": [],
     "startup": ".\/bpgameserver.x86_64 -batchmode -nographics -logfile server.log",
     "config": {
@@ -23,8 +23,8 @@
     "scripts": {
         "installation": {
             "script": null,
-            "container": "debian:11",
-            "entrypoint": "bash"
+            "container": "alpine:3.4",
+            "entrypoint": "ash"
         }
     },
     "variables": []

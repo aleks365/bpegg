@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install/Update Deps
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y locales \
+    && apt-get install -y curl ca-certificates openssl locales \
     && apt-get dist-upgrade -y \
     && apt-get autoremove -y \
     && apt-get autoclean \

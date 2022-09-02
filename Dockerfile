@@ -1,27 +1,21 @@
-FROM debian:buster
-
-LABEL James121op, <me@james121op.me>
+FROM ubuntu:22.04
 
 # Ignore APT warnings about not having a TTY
 ENV DEBIAN_FRONTEND noninteractive
 
-# Install OS deps and general prep
+# Install/Update Deps
 RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y locales \
     && apt-get dist-upgrade -y \
     && apt-get autoremove -y \
     && apt-get autoclean \
-    && apt-get -y install curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 locales rsync jq \
-    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-    && locale-gen en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/* \
-    && useradd -d /home/container -m container
-
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+    && adduser --disabled-password --home /home/container container
 
 USER container
 ENV USER=container HOME=/home/container
-
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
